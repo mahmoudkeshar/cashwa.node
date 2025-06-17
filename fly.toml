@@ -1,0 +1,34 @@
+# fly.toml app configuration file generated for cashwa-nodejs-server on 2025-04-28T09:21:00+03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'cashwa-nodejs-server'
+primary_region = 'iad'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  BASE_URL = "cashwa-nodejs-server.fly.dev"
+  JWT_EXPIRE_DATE = "30d"
+  EMAIL_HOST = "smtp.gmail.com"
+  EMAIL_PORT = "465"
+  EMAIL_USER = "ahlawy555555@gmail.com"
+  PORT = "3000"
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+
+[[vm]]
+  memory = '4gb'
+  cpu_kind = 'shared'
+  cpus = 2
+
+[[mounts]]
+  source = "uploads"
+  destination = "/uploads"
